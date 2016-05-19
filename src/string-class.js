@@ -6,29 +6,18 @@
     };
 
     String.prototype.toUpper = function () {
-      var i,
-        regex = /[a-z]/,
-        letters = this.split('');
+      var regex = /[a-z]/g;
+        return this.replace(regex, function (letter){
+          return String.fromCharCode(letter.charCodeAt() - 32);
+        });
 
-        for(i = 0; i < letters.length; i++) {
-          if (letters[i].match(regex)) {
-            letters[i] = String.fromCharCode(letters[i].charCodeAt() - 32);
-          }
-        }
-        return letters.join('');
     };
 
     String.prototype.toLower = function () {
-      var i,
-        regex = /[A-Z]/,
-        letters = this.split('');
-
-        for(i = 0; i < letters.length; i++) {
-          if (letters[i].match(regex)) {
-            letters[i] = String.fromCharCode(letters[i].charCodeAt() + 32);
-          }
-        }
-        return letters.join('');
+      var regex = /[A-Z]/g;
+        return this.replace(regex, function (letter){
+          return String.fromCharCode(letter.charCodeAt() + 32);
+        });
     };
 
     String.prototype.ucFirst = function () {
@@ -36,14 +25,16 @@
     };
 
     String.prototype.isQuestion = function () {
-      if (this[this.length-1] == '?'){
-        return true;
-      } else {
-        return false;
-      }
+      return /.+\?$/.test(this.trim());
     };
 
     String.prototype.words = function () {
+      var words = this.replace(/[+-=?<>)(*&^!@#$%"'{})]/g, '');
+      words = words.replace(/ +/g, ' ').split(/\s/);
+      return words[0] ? words : [];
+    };
 
+    String.prototype.wordCount = function(){
+      return this.words().length;
     };
   }());

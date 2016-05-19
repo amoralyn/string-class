@@ -60,5 +60,28 @@
 
         });
       });
+
+      describe('A suite to test the wordCount function', function () {
+        it('should return the number of words in a string', function () {
+          expect('I am pissed!!!'.wordCount()).toBe(3);
+          expect('Do not be rash'.wordCount()).toBe(4);
+        });
+      });
+
+      describe('A suite to test the toCurrency function', function () {
+        it('returns a currency representation of the string ', function () {
+          expect('11111.11'.toCurrency()).toEqual('11,111.11');
+          expect('20000'.toCurrency()).toEqual('20,000');
+          expect('20000000'.toCurrency()).toEqual('20,000,000');
+          expect('1000'.toCurrency()).toEqual('1,000');
+          expect('1.000'.toCurrency()).toEqual('1.00');
+          expect('1.0001'.toCurrency()).toEqual('1.00');
+        });
+        it('returns NaN for invalid numbers', function () {
+          expect('$1.00'.toCurrency()).toEqual(NaN);
+          expect('1k'.toCurrency()).toEqual(NaN);
+
+        });
+      });
     });
 }());
