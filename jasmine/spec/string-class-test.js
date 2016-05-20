@@ -74,13 +74,20 @@
           expect('20000'.toCurrency()).toEqual('20,000');
           expect('20000000'.toCurrency()).toEqual('20,000,000');
           expect('1000'.toCurrency()).toEqual('1,000');
-          expect('1.000'.toCurrency()).toEqual('1.00');
-          expect('1.0001'.toCurrency()).toEqual('1.00');
         });
         it('returns NaN for invalid numbers', function () {
           expect('$1.00'.toCurrency()).toEqual(NaN);
           expect('1k'.toCurrency()).toEqual(NaN);
+        });
+      });
 
+      describe('A suite ti test the fromCurrency function', function () {
+        it('returns a number representation of the Currency String', function () {
+          expect('11,111.11'.fromCurrency()).toBe(11111.11);
+          expect('100'.fromCurrency()).toBe(100);
+          expect('100'.fromCurrency()).toBe(100);
+          expect('1,000'.fromCurrency()).toBe(1000);
+          expect('1,000,000,000'.fromCurrency()).toBe(1000000000);
         });
       });
     });

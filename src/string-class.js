@@ -37,4 +37,21 @@
     String.prototype.wordCount = function(){
       return this.words().length;
     };
+
+    String.prototype.toCurrency = function () {
+    if (!/^[\d,.]+$/.test(this)) {
+      return NaN;
+    }
+    var number  = parseFloat(this).toString();
+    number = number.split('.');
+    number[0] = number[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return number.join('.');
+    };
+
+    String.prototype.fromCurrency = function () {
+    var amount;
+    amount = parseFloat(this.replace(/[$,]/g, ''));
+    return amount;
+    };
+
   }());
