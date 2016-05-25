@@ -1,10 +1,10 @@
 # StringClass Prototype
-Extension of Javascript `String` class to add some useful methods. 
+Extension of Javascript `String` class to add some useful methods.
 ​
 ## Installation
 ​
 1. Download and install [**Node JS**](https://nodejs.org/en/) if not already installed.  
-1. Clone the [**repository here**](https://github.com/sheyooo/inverted-index.git) or go to the project github page [**here**](https://github.com/sheyooo/inverted-index/) and download the zip file of the project. Unzip it.  
+1. Clone the [**repository here**](https://github.com/andela-ltijesunimi-israel/string-class) or go to the project github page [**here**](https://github.com/andela-ltijesunimi-israel/inverted-index) and download the zip file of the project. Unzip it.  
 1. Navigate to your terminal and change your directory to the **inverted-index project directory**.
 1. Check that you are on the master branch using `git status`.
 1. Run `npm install -g http-server` on the terminal.  
