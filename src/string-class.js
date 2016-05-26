@@ -30,7 +30,7 @@
     String.prototype.words = function() {
       var words = this.replace(/[+-=?<>)(*&^!@#$%"'{})]/g, '');
       words = words.replace(/ +/g, ' ').split(/\s/);
-      return words[0] ? words : [];
+      return words;
     };
 
     String.prototype.wordCount = function(){
