@@ -51,7 +51,7 @@
 
     /**
      * Get the words in the string in form of Array
-     * return The splitted words
+     * returns The splitted words
      */
     String.prototype.words = function() {
       var words = this.replace(/[+-=?<>)(*&^!@#$%"'{})]/g, '');
@@ -61,7 +61,7 @@
 
     /**
      * Count the number of words in the string
-     * return The number of words in string
+     * returns The number of words in string
      */
     String.prototype.wordCount = function(){
       return this.words().length;
@@ -69,7 +69,7 @@
 
     /**
      * Format a string to Currency
-     * return String representation of currency
+     * returns String representation of currency
      */
     String.prototype.toCurrency = function() {
       if (!/^[\d,.]+$/.test(this)) {
@@ -78,13 +78,12 @@
       var number = parseFloat(this).toString();
       number = number.split('.');
       number[0] = number[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      console.log(number[0] , "number");
       return number.join('.');
     };
 
     /**
      * Turns a String Currency to a number
-     * return Int or Float of Currency
+     * returns Int or Float of Currency
      */
     String.prototype.fromCurrency = function() {
       var amount;
