@@ -31,7 +31,7 @@
 
       describe('A suite to test the toLower function',function() {
         it('should return string in lower case letters',function() {
-          expect('GERONIMO'.toLower()).toEqual('geronimo');
+          expect('GEROnIMO'.toLower()).toEqual('geronimo');
           expect('Finally, the RABBIT went into the hole.'.toLower())
             .toEqual('finally, the rabbit went into the hole.');
         });
@@ -56,7 +56,7 @@
       describe('A suite to test the words function', function () {
         it('should return a list of the words in the string, as an Array', function () {
           expect('I am pissed!!!'.words()).toEqual(['I','am','pissed']);
-          expect('Do not be rash'.words()).toEqual(['Do','not','be','rash']);
+          expect('Do , ? not be rash'.words()).toEqual(['Do','not','be','rash']);
 
         });
       });
@@ -81,13 +81,16 @@
         });
       });
 
-      describe('A suite ti test the fromCurrency function', function () {
+      describe('A suite to test the fromCurrency function', function () {
         it('returns a number representation of the Currency String', function () {
-          expect('11,111.11'.fromCurrency()).toBe(11111.11);
-          expect('100'.fromCurrency()).toBe(100);
-          expect('100'.fromCurrency()).toBe(100);
-          expect('1,000'.fromCurrency()).toBe(1000);
-          expect('1,000,000,000'.fromCurrency()).toBe(1000000000);
+          expect('11,111.11'.fromCurrency()).toBe('11111.11');
+          expect('100'.fromCurrency()).toBe('100');
+          expect('1,000'.fromCurrency()).toBe('1000');
+          expect('1,000,000,000'.fromCurrency()).toBe('1000000000');
+        });
+        it('returns NaN for invalid numbers', function () {
+          expect('$100,000.00'.fromCurrency()).toEqual(NaN);
+          expect('1,0.00,000,000k'.fromCurrency()).toEqual(NaN);
         });
       });
     });

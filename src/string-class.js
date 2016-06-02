@@ -13,12 +13,10 @@
      * returns The UpperCased string
      */
     String.prototype.toUpper = function() {
-      var regex = /[a-z]/g;
       // Convert to uppercase by converting to and from ASCII subtract 32
-        return this.replace(regex, function (letter){
-          return String.fromCharCode(letter.charCodeAt() - 32);
-        });
-
+      return this.replace(/[a-z]/g, function (letter){
+        return String.fromCharCode(letter.charCodeAt() - 32);
+      });
     };
 
     /**
@@ -26,11 +24,10 @@
      * returns The LowerCased string
      */
     String.prototype.toLower = function() {
-      var regex = /[A-Z]/g;
       // Convert to uppercase by converting to and from ASCII add 32
-        return this.replace(regex, function (letter){
-          return String.fromCharCode(letter.charCodeAt() + 32);
-        });
+      return this.replace(/[A-Z]/g, function (letter){
+        return String.fromCharCode(letter.charCodeAt() + 32);
+      });
     };
 
     /**
@@ -54,9 +51,7 @@
      * returns The splitted words
      */
     String.prototype.words = function() {
-      var words = this.replace(/[+-=?<>)(*&^!@#$%"'{})]/g, '');
-      words = words.replace(/ +/g, ' ').split(/\s/);
-      return words;
+      return this.replace(/[^A-z\s]/gi, '').replace(/ +/g, ' ').split(/\s/);
     };
 
     /**
@@ -72,13 +67,15 @@
      * returns String representation of currency
      */
     String.prototype.toCurrency = function() {
-      if (!/^[\d,.]+$/.test(this)) {
+      if (!/^[\d,.]+$/g.test(this)) {
         return NaN;
       }
-      var number = parseFloat(this).toString();
-      number = number.split('.');
-      number[0] = number[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      return number.join('.');
+      if (!this.match(/\./g)){
+        return this.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }else {
+        var number = this.split('.');
+        return [number[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','), number[1]].join('.');
+      }
     };
 
     /**
@@ -86,9 +83,10 @@
      * returns Int or Float of Currency
      */
     String.prototype.fromCurrency = function() {
-      var amount;
-      amount = parseFloat(this.replace(/[$,]/g, ''));
-      return amount;
+      if (!/^[\d,.]+$/g.test(this)) {
+        return NaN;
+      }
+      return this.replace(/[$,]/g, '');
     };
 
   }());
